@@ -28,3 +28,6 @@
 
 # Ignore database config
 database.yml
+
+# Ignore environment variables config
+example.env
