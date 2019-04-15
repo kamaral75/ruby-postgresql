@@ -63,6 +63,18 @@ docker-compose up
 docker-compose run web rake db:create
 ```
 
+#### Create a new data model
+_Open the web container to run rails commands_
+```
+docker exec -it example_web bash
+```
+
+Run rails model scaffold and db migrate commands
+```
+rails generate scaffold User name:string email:string
+rails db:migrate
+```
+
 ## Configuration
 #### Config files that are excluded from git and docker repository
 **_Config files must be stored securely and copied into the project at runtime_**
@@ -76,29 +88,23 @@ database.yml
 #### Environment variables config
 example.env
 
-## Build and run
+## Docker
+
+#### Build and run
 ```
 sh build.sh
 sh run.sh
 ```
 
-## Stop containers
+#### Stop containers
 ```
 docker-compose down
 ```
 
-## Open an interactive terminal in an existing container
+#### Open an interactive terminal in an existing container
 ```
 docker exec -it example_web bash
 ```
 
-## Create a new data model
-Open the web container to run rails commands
-
-```
-rails generate scaffold User name:string email:string
-rails db:migrate
-```
-
-## Known Issues
+#### Known Issues
 [5919](https://github.com/docker/compose/issues/5919) DB::ConnectionBad could not translate host name “db” to address
