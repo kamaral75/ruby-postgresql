@@ -8,7 +8,7 @@ A basic example app for Rails and PostGreSQL built on Docker Compose
 [railstutorial.org](https://www.railstutorial.org/book)
 
 ## Ruby version
-### config/application.rb
+config/application.rb
 
 ## Background
 ### How this app was generated
@@ -28,20 +28,27 @@ touch Gemfile.lock
 #### Create a docker-compose.yml file
 
 #### Build new Rails project
-#### Compose builds the image for the web service using the Dockerfile then it runs rails new inside a new container, using that image
+Compose builds the image for the web service using the Dockerfile then it runs rails new inside a new container, using that image
 ```
 docker-compose run web rails new . --force --no-deps --database=postgresql
 docker-compose build
 ```
 
-#### Edit config/database.yml and set credentials using environment variables
+#### Environment Variables
+
+Edit **config/database.yml** and set credentials using environment variables
 ```
 username: <%= ENV['POSTGRES_USER'] %>
 password: <%= ENV['POSTGRES_PASSWORD'] %>
 ```
 
-#### Create example.env file to set environment variables
-#### Set env_file in all containers in docker-compose.yml
+Create **example.env** to set environment variables
+```
+POSTGRES_USER=user
+POSTGRES_PASSWORD=secret
+```
+
+Set env_file in **docker-compose.yml** for all containers
 ```
 env_file: example.env
 ```
@@ -57,11 +64,11 @@ docker-compose run web rake db:create
 ```
 
 ## Configuration
-### Config files that are excluded from git and docker repository
-#### Config files must be stored securely and copied into the project at runtime
+#### Config files that are excluded from git and docker repository
+**_Config files must be stored securely and copied into the project at runtime_**
 
 #### Key
-/config/master.key
+config/master.key
 
 #### Database config
 database.yml
@@ -80,12 +87,14 @@ sh run.sh
 docker-compose down
 ```
 
-## Login to an existing container
+## Open an interactive terminal in an existing container
 ```
-docker exec -it ruby-postgresql_web bash
+docker exec -it example_web bash
 ```
 
 ## Create a new data model
+Open the web container to run rails commands
+
 ```
 rails generate scaffold User name:string email:string
 rails db:migrate

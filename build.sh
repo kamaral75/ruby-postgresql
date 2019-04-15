@@ -9,8 +9,10 @@ if [ -z "${ENV}" ]; then
 fi
 
 # Run web bundle install to sync changes in the Gemfile.lock to the host
-[ "$ENV" = PROD ] &&
-   docker-compose run web bundle install ||
-   docker-compose run web bundle install --without production
+#[ "$ENV" = PROD ] &&
+#   docker-compose run web bundle install ||
+#   docker-compose run web bundle install --without production
 
-docker-compose build
+docker-compose run web bundle install
+
+#docker-compose build
