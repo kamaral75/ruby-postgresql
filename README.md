@@ -3,15 +3,19 @@
 ## Introduction
 A basic example app for Rails and PostGreSQL built on Docker Compose
 
+## Tutorials
+[Compose and Rails](https://docs.docker.com/compose/rails/)
+[railstutorial.org](https://www.railstutorial.org/book)
+
 ## Ruby version
-###config/application.rb
+### config/application.rb
 
 ## System dependencies
 
 ## Configuration
 
 ## Database
-###database.yml
+### database.yml
 ```
 docker-compose run web rake db:create
 ```
@@ -34,9 +38,9 @@ sh run.sh
 docker-compose down
 ```
 
-## Login to a container
+## Login to an existing container
 ```
-docker run -it ruby-postgresql_web bash
+docker exec -it ruby-postgresql_web bash
 ```
 
 ## Create a new data model
@@ -46,4 +50,4 @@ rails db:migrate
 ```
 
 ## Known Issues
-[DB::ConnectionBad could not translate host name “db” to address](https://github.com/docker/compose/issues/5919)
+[5919](https://github.com/docker/compose/issues/5919) DB::ConnectionBad could not translate host name “db” to address

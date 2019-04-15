@@ -1,1 +1,3 @@
 config/master.key
+docker-compose.yml
+example.env
